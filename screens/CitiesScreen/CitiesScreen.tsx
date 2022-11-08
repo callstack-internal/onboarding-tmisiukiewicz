@@ -44,7 +44,13 @@ const CitiesScreen = () => {
 
   return (
     <View>
-      {loading && <ActivityIndicator />}
+      {loading && (
+        <ActivityIndicator
+          accessibilityState={{
+            busy: true,
+          }}
+        />
+      )}
       {error && <Text style={styles.errorMsg}>Unable to load list</Text>}
       {data && (
         <FlatList

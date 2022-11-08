@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, useColorScheme, View } from "react-native";
-import { Provider } from "use-http";
+import { CachePolicies, Provider } from "use-http";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import RootNavigation from "./navigation/RootNavigation";
 import { OPENWEATHER_API_URL } from "./utils/consts";
@@ -13,7 +13,10 @@ const App = () => {
   };
 
   return (
-    <Provider url={OPENWEATHER_API_URL}>
+    <Provider
+      url={OPENWEATHER_API_URL}
+      options={{ cachePolicy: CachePolicies.NO_CACHE }}
+    >
       <SafeAreaView style={{ ...backgroundStyle, ...styles.container }}>
         <View style={styles.container}>
           <RootNavigation />

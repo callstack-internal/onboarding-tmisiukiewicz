@@ -3,7 +3,7 @@ import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { OPENWEATHER_ICON_URL } from "../../utils/consts";
 import transformTemperature from "../../utils/transformTemperature";
-import { CityListRowProps } from "./types";
+import { CityListRowProps } from "./CityListRow.types";
 
 const CityListRow = ({
   description,
@@ -14,7 +14,7 @@ const CityListRow = ({
   const uri = `${OPENWEATHER_ICON_URL}/${icon}.png`;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} accessibilityLabel="City">
       <View>
         <Image
           source={{
@@ -29,7 +29,7 @@ const CityListRow = ({
         <Text style={styles.description}>{description}</Text>
       </View>
       <View style={styles.temperatureContainer}>
-        <Text style={styles.temperature}>
+        <Text style={styles.temperature} accessibilityLabel="temperature">
           {transformTemperature(temperature)}
         </Text>
       </View>
