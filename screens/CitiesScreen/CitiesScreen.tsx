@@ -54,6 +54,7 @@ const CitiesScreen = () => {
       {error && <Text style={styles.errorMsg}>Unable to load list</Text>}
       {data && (
         <FlatList
+          accessibilityLabel="List of cities"
           data={data.list}
           {...{ renderItem }}
           keyExtractor={(item) => item.id.toString()}
