@@ -11,6 +11,16 @@
 
 @implementation MyNotification
 
+- (NSDictionary *)constantsToExport
+{
+  return @{ @"notificationDelay": @5 };
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+  return NO;  // YES if needed to initialize on main thread (for example, initialization relies on calling UIKit), NO otherwise
+}
+
 // This makes our module be accessible from JS. You can provide string argument, which will be the name accessible from JS.
 // Otherwise the class name will be used (here: MyNotification)
 RCT_EXPORT_MODULE()

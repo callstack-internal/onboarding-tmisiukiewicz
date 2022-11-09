@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet, useColorScheme, View } from "react-native";
+import {
+  NativeModules,
+  SafeAreaView,
+  StyleSheet,
+  useColorScheme,
+  View,
+} from "react-native";
 import { CachePolicies, Provider } from "use-http";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import RootNavigation from "./navigation/RootNavigation";
@@ -12,6 +18,10 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.default,
   };
+
+  const notificationModule = NativeModules.MyNotification;
+  const { notificationDelay } = notificationModule.getConstants();
+  console.log("Delay in showing notifications is:", notificationDelay);
 
   useEffect(() => {
     OurModuleInterface.showFancyNotification(

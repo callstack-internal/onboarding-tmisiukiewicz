@@ -7,9 +7,13 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyNotificationModule extends ReactContextBaseJavaModule {
     String notificationChannelId = "MyChannel";
@@ -23,6 +27,15 @@ public class MyNotificationModule extends ReactContextBaseJavaModule {
     public String getName() {
         // We will access this module as "MyNotification" in Javascript
         return "MyNotification";
+    }
+
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+
+        constants.put("notificationDelay", 5);
+
+        return constants;
     }
 
     // Annotated functions that will be accessible from JS, with the same name and signature
