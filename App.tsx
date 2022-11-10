@@ -1,9 +1,16 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, useColorScheme, View } from "react-native";
+import React, { useEffect } from "react";
+import {
+  NativeModules,
+  SafeAreaView,
+  StyleSheet,
+  useColorScheme,
+  View,
+} from "react-native";
 import { CachePolicies, Provider } from "use-http";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import RootNavigation from "./navigation/RootNavigation";
 import { OPENWEATHER_API_URL } from "./utils/consts";
+import OurModuleInterface from "./nativeModules/OurModuleInterface";
 
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";
@@ -11,6 +18,17 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.default,
   };
+
+  const notificationModule = NativeModules.MyNotification;
+  const { notificationDelay } = notificationModule.getConstants();
+  console.log("Delay in showing notifications is:", notificationDelay);
+
+  useEffect(() => {
+    OurModuleInterface.showFancyNotification(
+      "Hello!",
+      "This is a test notification!"
+    );
+  }, []);
 
   return (
     <Provider
