@@ -1,0 +1,32 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ci:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+      - uses: c-hive/gha-yarn-cache@v1
+
+      - name: Install node_modules
+        run: |
+          yarn install
+
+      - name: Run lint
+        run: |
+          yarn lint
+
+      - name: Run test
+        run: |
+          yarn test
+      
+      - name: Run tsc
+        run: |
+          yarn tsc
