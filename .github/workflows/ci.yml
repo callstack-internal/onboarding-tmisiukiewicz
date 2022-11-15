@@ -7,7 +7,7 @@ on:
 
 jobs:
   ci:
-    name: Checks
+    name: Lint and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,14 +19,10 @@ jobs:
         run: |
           yarn install
 
-      - name: Run lint
+      - name: Lint
         run: |
           yarn lint
 
       - name: Run test
         run: |
           yarn test
-      
-      - name: Run tsc
-        run: |
-          yarn tsc
