@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.onboardingapp.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.shopify.reactnativeperformance.ReactNativePerformance;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -53,6 +54,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
+    ReactNativePerformance.onAppStarted();
     super.onCreate();
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;

@@ -10,6 +10,18 @@ export const CITIES_LIST = [
   1880252, // Singapore
   3094802, // Cracow,
   3081368, // Wroclaw,
+  2643743, // London
+  2509954, // Valencia
+  1275339, // Mumbai
+  1835848, // Seoul
+  2950159, // Berlin
+  2800866, // Brussels
+  3143244, // Oslo
+  323776, // Antalya
+  264371, // Athens
+  146268, // Nicosia
+  1733046, // Kuala Lumpur
+  2147714, // Sydney
 ];
 
 export const ENDPOINTS = {

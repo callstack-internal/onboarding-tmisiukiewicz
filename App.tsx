@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   NativeModules,
   SafeAreaView,
@@ -6,8 +6,13 @@ import {
   useColorScheme,
   View,
 } from "react-native";
+import { ListsProfiler } from "@shopify/react-native-performance-lists-profiler";
 import { CachePolicies, Provider } from "use-http";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import {
+  PerformanceProfiler,
+  RenderPassReport,
+} from "@shopify/react-native-performance";
 import RootNavigation from "./navigation/RootNavigation";
 import { OPENWEATHER_API_URL } from "./utils/consts";
 import OurModuleInterface from "./nativeModules/OurModuleInterface";
@@ -30,17 +35,29 @@ const App = () => {
     );
   }, []);
 
+  const onInteractiveCallback = useCallback((TTI: number, listName: string) => {
+    console.log(`${listName}'s TTI: ${TTI}`);
+  }, []);
+
+  const onReportPrepared = useCallback((report: RenderPassReport) => {
+    console.log(report);
+  }, []);
+
   return (
-    <Provider
-      url={OPENWEATHER_API_URL}
-      options={{ cachePolicy: CachePolicies.NO_CACHE }}
-    >
-      <SafeAreaView style={{ ...backgroundStyle, ...styles.container }}>
-        <View style={styles.container}>
-          <RootNavigation />
-        </View>
-      </SafeAreaView>
-    </Provider>
+    <PerformanceProfiler onReportPrepared={onReportPrepared}>
+      <ListsProfiler onInteractive={onInteractiveCallback}>
+        <Provider
+          url={OPENWEATHER_API_URL}
+          options={{ cachePolicy: CachePolicies.NO_CACHE }}
+        >
+          <SafeAreaView style={{ ...backgroundStyle, ...styles.container }}>
+            <View style={styles.container}>
+              <RootNavigation />
+            </View>
+          </SafeAreaView>
+        </Provider>
+      </ListsProfiler>
+    </PerformanceProfiler>
   );
 };
 

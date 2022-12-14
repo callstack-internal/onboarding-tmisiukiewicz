@@ -7,6 +7,7 @@
 package com.onboardingapp;
 
 import android.content.Context;
+import tech.bam.rnperformance.flipper.RNPerfMonitorPlugin;
 import com.facebook.flipper.android.AndroidFlipperClient;
 import com.facebook.flipper.android.utils.FlipperUtils;
 import com.facebook.flipper.core.FlipperClient;
@@ -25,11 +26,13 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.network.NetworkingModule;
 import okhttp3.OkHttpClient;
 
+
 public class ReactNativeFlipper {
   public static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
     if (FlipperUtils.shouldEnableFlipper(context)) {
       final FlipperClient client = AndroidFlipperClient.getInstance(context);
 
+      client.addPlugin(new RNPerfMonitorPlugin(reactInstanceManager));
       client.addPlugin(new InspectorFlipperPlugin(context, DescriptorMapping.withDefaults()));
       client.addPlugin(new ReactFlipperPlugin());
       client.addPlugin(new DatabasesFlipperPlugin(context));

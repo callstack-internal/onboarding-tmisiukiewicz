@@ -1,11 +1,15 @@
-import { FlatList, ListRenderItem, Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { FlashList, ListRenderItem } from "@shopify/flash-list";
+import { FlashListPerformanceView } from "@shopify/react-native-performance-lists-profiler";
+import { useStartProfiler } from "@shopify/react-native-performance";
 import { City } from "../../types";
 import CityListRow from "../CityListRow";
 
 const CityList = ({ list }: { list: City[] }) => {
   const navigation = useNavigation();
+  const startNavigationTTITimer = useStartProfiler();
   const renderItem: ListRenderItem<City> = ({
     item: {
       name,
@@ -26,7 +30,13 @@ const CityList = ({ list }: { list: City[] }) => {
     return (
       <Pressable
         accessibilityRole="button"
-        onPress={() => navigation.navigate("WeatherDetails", screenParams)}
+        onPress={(event) => {
+          startNavigationTTITimer({
+            source: "CitiesScreen",
+            uiEvent: event,
+          });
+          navigation.navigate("WeatherDetails", screenParams);
+        }}
       >
         <CityListRow {...commonProps} />
       </Pressable>
@@ -34,20 +44,16 @@ const CityList = ({ list }: { list: City[] }) => {
   };
 
   return (
-    <FlatList
-      accessibilityLabel="List of cities"
-      {...{ renderItem }}
-      data={list}
-      keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={styles.list}
-    />
+    <FlashListPerformanceView listName="CityList">
+      <FlashList
+        accessibilityLabel="List of cities"
+        {...{ renderItem }}
+        data={list}
+        keyExtractor={(item) => item.id.toString()}
+        estimatedItemSize={83}
+      />
+    </FlashListPerformanceView>
   );
 };
-
-const styles = StyleSheet.create({
-  list: {
-    height: "100%",
-  },
-});
 
 export default CityList;
