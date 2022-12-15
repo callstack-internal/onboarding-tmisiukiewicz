@@ -10,6 +10,10 @@
 
 #import <ReactNativePerformance/ReactNativePerformance.h>
 
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
+
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
 #import <React/RCTCxxBridgeDelegate.h>
@@ -125,10 +129,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
-
-#import <AppCenterReactNative.h>
-#import <AppCenterReactNativeAnalytics.h>
-#import <AppCenterReactNativeCrashes.h>
 
 {
 #if DEBUG

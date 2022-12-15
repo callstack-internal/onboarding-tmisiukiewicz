@@ -15,7 +15,6 @@
 		7699B88040F8A987B510C191 /* libPods-OnboardingApp-OnboardingAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-OnboardingApp-OnboardingAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		985D1137294B09990088735D /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985D1136294B09990088735D /* AppCenter-Config.plist */; };
-		985D1139294B0A3E0088735D /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 985D1138294B0A3E0088735D /* ios */; };
 		98C4E865291BD46300C33BCC /* MyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C4E864291BD46300C33BCC /* MyNotification.m */; };
 		98C4E868291BF10400C33BCC /* RNCKCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C4E867291BF10400C33BCC /* RNCKCustomButton.m */; };
 		98C4E86B291BF13900C33BCC /* RNCKCustomButtonViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C4E86A291BF13900C33BCC /* RNCKCustomButtonViewManager.m */; };
@@ -49,7 +48,6 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = OnboardingApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-OnboardingApp-OnboardingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingApp-OnboardingAppTests.release.xcconfig"; path = "Target Support Files/Pods-OnboardingApp-OnboardingAppTests/Pods-OnboardingApp-OnboardingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		985D1136294B09990088735D /* AppCenter-Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
-		985D1138294B0A3E0088735D /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; sourceTree = "<group>"; };
 		98C4E861291BD40C00C33BCC /* OnboardingApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnboardingApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		98C4E863291BD43500C33BCC /* MyNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyNotification.h; sourceTree = "<group>"; };
 		98C4E864291BD46300C33BCC /* MyNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyNotification.m; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				985D1136294B09990088735D /* AppCenter-Config.plist */,
-				985D1138294B0A3E0088735D /* ios */,
 			);
 			name = OnboardingApp;
 			sourceTree = "<group>";
@@ -267,7 +264,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				985D1139294B0A3E0088735D /* ios in Resources */,
 				985D1137294B09990088735D /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
