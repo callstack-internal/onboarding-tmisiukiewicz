@@ -42,6 +42,9 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [AppCenterReactNative register];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
   [ReactNativePerformance onAppStarted];
   [self registerForRemoteNotifications];
   #ifdef FB_SONARKIT_ENABLED
@@ -122,6 +125,11 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
+
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
