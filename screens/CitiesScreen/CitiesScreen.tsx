@@ -13,6 +13,13 @@ import { WeatherResponse } from "../../types";
 import CityList from "../../components/CityList";
 
 const CitiesScreen = () => {
+  console.log(
+    createUrlParams(ENDPOINTS.group, {
+      appid: OPENWEATHER_API_KEY,
+      units: "metric",
+      id: CITIES_LIST.join(","),
+    })
+  );
   const { loading, error, data } = useFetch<WeatherResponse>(
     createUrlParams(ENDPOINTS.group, {
       appid: OPENWEATHER_API_KEY,
