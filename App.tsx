@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { ListsProfiler } from "@shopify/react-native-performance-lists-profiler";
+import { ScriptManager, Script } from "@callstack/repack/client";
 import { CachePolicies, Provider } from "use-http";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import {
@@ -16,6 +17,16 @@ import {
 import RootNavigation from "./navigation/RootNavigation";
 import { OPENWEATHER_API_URL } from "./utils/consts";
 import OurModuleInterface from "./nativeModules/OurModuleInterface";
+
+ScriptManager.shared.addResolver(async (scriptId) => {
+  // In dev mode, resolve script location to dev server.
+  if (__DEV__) {
+    return {
+      url: Script.getDevServerURL(scriptId),
+      cache: false,
+    };
+  }
+});
 
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";

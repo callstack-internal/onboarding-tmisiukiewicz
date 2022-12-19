@@ -6,9 +6,11 @@ import { FlashListPerformanceView } from "@shopify/react-native-performance-list
 import { useStartProfiler } from "@shopify/react-native-performance";
 import { City } from "../../types";
 import CityListRow from "../CityListRow";
+import useFeatureFlags from "../../hooks/useFeatureFlags";
 
 const CityList = ({ list }: { list: City[] }) => {
   const navigation = useNavigation();
+  const shouldHideTemperature = useFeatureFlags("temperatureHidden");
   const startNavigationTTITimer = useStartProfiler();
   const renderItem: ListRenderItem<City> = ({
     item: {
@@ -38,7 +40,7 @@ const CityList = ({ list }: { list: City[] }) => {
           navigation.navigate("WeatherDetails", screenParams);
         }}
       >
-        <CityListRow {...commonProps} />
+        <CityListRow {...commonProps} hideTemperature={shouldHideTemperature} />
       </Pressable>
     );
   };

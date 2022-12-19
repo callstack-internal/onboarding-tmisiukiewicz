@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { OPENWEATHER_ICON_URL } from "../../utils/consts";
-import transformTemperature from "../../utils/transformTemperature";
 import { CityListRowProps } from "./CityListRow.types";
 
 const CityListRow = ({
@@ -10,8 +9,10 @@ const CityListRow = ({
   icon,
   name,
   temperature,
+  hideTemperature,
 }: CityListRowProps) => {
   const uri = `${OPENWEATHER_ICON_URL}/${icon}.png`;
+  const TemperatureBadge = React.lazy(() => import("../TemperatureBadge"));
 
   return (
     <View style={styles.container} accessibilityLabel="City">
@@ -28,11 +29,7 @@ const CityListRow = ({
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
-      <View style={styles.temperatureContainer}>
-        <Text style={styles.temperature} accessibilityLabel="temperature">
-          {transformTemperature(temperature)}
-        </Text>
-      </View>
+      {!hideTemperature && <TemperatureBadge {...{ temperature }} />}
     </View>
   );
 };
@@ -55,16 +52,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 50,
     height: 50,
-  },
-  temperatureContainer: {
-    marginLeft: "auto",
-    backgroundColor: "#74b9ff",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-  },
-  temperature: {
-    color: Colors.white,
   },
 });
 

@@ -3,4 +3,5 @@ export interface CityListRowProps {
   description: string;
   icon: string;
   temperature: number;
+  hideTemperature?: boolean;
 }
